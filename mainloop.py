@@ -28,17 +28,22 @@ previously_triggered = False
 i=0
 print('Starting wachtdogloop')
 while i < (55*60)/sleeptime:
-    # Check if there is movement
-    triggered = watchdog.detect()
-    if triggered and not previously_triggered:
-        print('Triggered!')
-        # Take image
-        print('Taking image')
-        imgloc = './photo.jpeg'
-        paperazzi.take_image(imgloc)
-        # Post Tweet
-        print('Sending image')
-        shouter.send_img(imgloc,'Look at this picture!')
+    try:
+        # Check if there is movement
+        triggered = watchdog.detect()
+        if triggered and not previously_triggered:
+            print('Triggered!')
+            # Take image
+            print('Taking image')
+            imgloc = './photo.jpeg'
+            paperazzi.take_image(imgloc)
+            # Post Tweet
+            print('Sending image')
+            shouter.send_img(imgloc,'Look at this picture!')
+    
+    except Exception as e:
+        print('Whoops, something went wrong. Trying again.')
+        print(e)
     
     # Remember previous state
     previously_triggered = triggered

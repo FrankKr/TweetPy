@@ -1,6 +1,6 @@
 # Add lines below to crontab
 # using crontab -e
 
-@reboot sudo python3 /home/pi/TweetPy/mainloop.py > /home/pi/TweetPy/logs.txt
-0 * * * * /usr/bin/flock -n /tmp/my.lockfile /home/pi/TweetPy/mainloop.py > /home/pi/TweetPy/logs.txt
+@reboot /usr/bin/flock -n /tmp/my.lockfile sudo python3 -u /home/pi/TweetPy/mainloop.py > /home/pi/TweetPy/logs.txt 2>&1
+0 * * * * /usr/bin/flock -n /tmp/my.lockfile sudo python3 -u /home/pi/TweetPy/mainloop.py > /home/pi/TweetPy/logs.txt 2>&1
 
