@@ -23,7 +23,7 @@ class CamCapt():
         workingcams = []
         for camport in camlist:
             try:
-                cam = pygame.camera.Camera(camport,(640,480))
+                cam = pygame.camera.Camera(camport,(640,480),"RGB")
                 cam.start()
                 img = cam.get_image()
                 cam.stop()
@@ -45,8 +45,9 @@ class CamCapt():
         img = self.cam.get_image()
         pygame.image.save(img, name)
         self.cam.stop()
+        print('Stored image to', name)
 
-if __name__==' main':
+if __name__=='__main__':
     ccpt = CamCapt()
     ccpt.take_image()
 

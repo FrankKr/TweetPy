@@ -36,7 +36,7 @@ class BirdDetector():
     def PIR_state(self):
         return GPIO.input(self.PIR)
 
-if __name__ == 'main':
+if __name__ == '__main__':
     watchdog = BirdDetector()
     while True:     
         i = watchdog.detect()
